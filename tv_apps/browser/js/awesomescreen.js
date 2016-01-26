@@ -153,6 +153,9 @@ var Awesomescreen = {
       this.bookmark, this.bookmarkList, BookmarkStore, this.DEFAULT_BOOKMARK
     );
 
+    // init HistoryStore
+    HistoryStore.init();
+
     // init history list
     this.historyList = new SmartList(this.history, 'LT_SE_HISTORY');
     this.handleSmartListEvent(

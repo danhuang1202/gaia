@@ -25,6 +25,27 @@
 
     cacheEventQueue: [],
 
+//IFDEF_FIREFOX_SYNC
+    syncHistoryRootFolderCache: {
+      id: 'sync_history',
+      title: '',
+      type: 'folder',
+      readOnly: true
+    },
+//ENDIF_FIREFOX_SYNC
+
+    init: function () {
+
+//IFDEF_FIREFOX_SYNC
+      navigator.mozL10n.formatValue('fxsync-synced-history').then(
+        l10nFxsyncHistory => {
+          this.syncHistoryRootFolderCache.title = l10nFxsyncHistory;
+        }
+      );
+//ENDIF_FIREFOX_SYNC
+
+    },
+
     reset: function (cb) {
       return new Promise(resolve => {
         this.cache.clear();
@@ -239,12 +260,8 @@
                 // synced history.
                 if(timestamp) {
                   this.cacheIndexEndAt++;
-                  this.cache.set(this.cacheIndexEndAt, {
-                    id: 'sync_history',
-                    title: 'Synced History',
-                    type: 'folder',
-                    readOnly: true
-                  });
+                  this.cache.set(this.cacheIndexEndAt,
+                    this.syncHistoryRootFolderCache);
                 }
 
                 // get bookmark data from origin indexdDB

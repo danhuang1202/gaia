@@ -35,7 +35,7 @@
         error[v] = url.searchParams.get(v);
       }
     );
-
+    alert(error.e);
     switch (error.e) {
       case 'connectionFailure':
       case 'netInterrupt':

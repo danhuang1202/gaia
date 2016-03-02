@@ -2571,7 +2571,7 @@ var Awesomescreen = {
     if(document.activeElement == this.inputArea){
       return true;
     }
-
+ 
     switch(true){
       case Awesomescreen.isDisplayedDialog():
         this.selectMenu = document.activeElement;
